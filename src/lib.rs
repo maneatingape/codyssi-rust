@@ -9,5 +9,5 @@ library!(util
 );
 
 library!(year2025
-    problem01
+    problem01, problem02
 );

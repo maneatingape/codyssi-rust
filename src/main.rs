@@ -69,5 +69,5 @@ macro_rules! run {
 }
 
 run!(year2025
-    problem01
+    problem01, problem02
 );
