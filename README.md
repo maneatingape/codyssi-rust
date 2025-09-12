@@ -13,3 +13,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 5 | [Patron Islands](https://www.codyssi.com/view_problem_9) | [Source](src/year2025/problem05.rs) |
 | 6 | [Lotus Scramble](https://www.codyssi.com/view_problem_10) | [Source](src/year2025/problem06.rs) |
 | 7 | [Siren Disruption](https://www.codyssi.com/view_problem_11) | [Source](src/year2025/problem07.rs) |
+| 8 | [Risky Shortcut](https://www.codyssi.com/view_problem_12) | [Source](src/year2025/problem08.rs) |
