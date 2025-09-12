@@ -1,0 +1,42 @@
+use codyssi::year2025::problem12::*;
+
+const EXAMPLE: &str = "\
+222 267 922 632 944
+110 33 503 758 129
+742 697 425 362 568
+833 408 425 349 631
+874 671 202 430 602
+
+SHIFT COL 2 BY 1
+MULTIPLY 4 COL 5
+SUB 28 ALL
+SHIFT COL 4 BY 2
+MULTIPLY 4 ROW 4
+ADD 26 ROW 3
+SHIFT COL 4 BY 2
+ADD 68 ROW 2
+
+TAKE
+CYCLE
+TAKE
+ACT
+TAKE
+CYCLE";
+
+#[test]
+fn part1_test() {
+    let input = parse(EXAMPLE);
+    assert_eq!(part1(&input), 18938);
+}
+
+#[test]
+fn part2_test() {
+    let input = parse(EXAMPLE);
+    assert_eq!(part2(&input), 11496);
+}
+
+#[test]
+fn part3_test() {
+    let input = parse(EXAMPLE);
+    assert_eq!(part3(&input), 19022);
+}

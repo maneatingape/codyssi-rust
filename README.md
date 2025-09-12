@@ -17,3 +17,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 9 | [Windy Bargain](https://www.codyssi.com/view_problem_13) | [Source](src/year2025/problem09.rs) |
 | 10 | [Cyclops Chaos](https://www.codyssi.com/view_problem_14) | [Source](src/year2025/problem10.rs) |
 | 11 | [Games in a Storm](https://www.codyssi.com/view_problem_15) | [Source](src/year2025/problem11.rs) |
+| 12 | [Challenging the Whirlpool](https://www.codyssi.com/view_problem_16) | [Source](src/year2025/problem12.rs) |
