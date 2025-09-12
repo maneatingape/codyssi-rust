@@ -15,3 +15,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 7 | [Siren Disruption](https://www.codyssi.com/view_problem_11) | [Source](src/year2025/problem07.rs) |
 | 8 | [Risky Shortcut](https://www.codyssi.com/view_problem_12) | [Source](src/year2025/problem08.rs) |
 | 9 | [Windy Bargain](https://www.codyssi.com/view_problem_13) | [Source](src/year2025/problem09.rs) |
+| 10 | [Cyclops Chaos](https://www.codyssi.com/view_problem_14) | [Source](src/year2025/problem10.rs) |
