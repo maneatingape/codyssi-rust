@@ -70,5 +70,5 @@ macro_rules! run {
 
 run!(year2025
     problem01, problem02, problem03, problem04, problem05, problem06, problem07, problem08,
-    problem09, problem10, problem11, problem12
+    problem09, problem10, problem11, problem12, problem13
 );
