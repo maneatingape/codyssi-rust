@@ -20,3 +20,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 12 | [Challenging the Whirlpool](https://www.codyssi.com/view_problem_16) | [Source](src/year2025/problem12.rs) |
 | 13 | [Laestrygonian Guards](https://www.codyssi.com/view_problem_17) | [Source](src/year2025/problem13.rs) |
 | 14 | [Crucial Crafting](https://www.codyssi.com/view_problem_18) | [Source](src/year2025/problem14.rs) |
+| 15 | [Artifacts at Atlantis](https://www.codyssi.com/view_problem_19) | [Source](src/year2025/problem15.rs) |
