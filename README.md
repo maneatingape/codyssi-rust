@@ -32,3 +32,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 1 | [Handling the Budget](https://www.codyssi.com/view_problem_1) | [Source](src/year2024/problem01.rs) |
 | 2 | [Sensors and Circuits](https://www.codyssi.com/view_problem_2) | [Source](src/year2024/problem02.rs) |
 | 3 | [Unformatted Readings](https://www.codyssi.com/view_problem_3) | [Source](src/year2024/problem03.rs) |
+| 4 | [Traversing the Country](https://www.codyssi.com/view_problem_4) | [Source](src/year2024/problem04.rs) |
