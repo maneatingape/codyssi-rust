@@ -70,7 +70,7 @@ macro_rules! run {
 }
 
 run!(year2024
-    problem01, problem02
+    problem01, problem02, problem03
 );
 
 run!(year2025
