@@ -17,6 +17,7 @@ fn main() {
 
     // Filter solutions
     let solutions = empty()
+        .chain(year2024())
         .chain(year2025())
         .filter(|solution| year.is_none_or(|y| y == solution.year))
         .filter(|solution| problem.is_none_or(|p| p == solution.problem));
@@ -67,6 +68,10 @@ macro_rules! run {
         }
     }
 }
+
+run!(year2024
+    problem01
+);
 
 run!(year2025
     problem01, problem02, problem03, problem04, problem05, problem06, problem07, problem08,

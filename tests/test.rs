@@ -43,6 +43,9 @@ macro_rules! test {
         pub mod $year {$(pub mod $problem;)*}
     }
 }
+test!(year2024
+    problem01
+);
 
 test!(year2025
     problem01, problem02, problem03, problem04, problem05, problem06, problem07, problem08,
