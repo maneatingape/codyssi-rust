@@ -9,7 +9,7 @@ library!(util
 );
 
 library!(year2024
-    problem01
+    problem01, problem02
 );
 
 library!(year2025

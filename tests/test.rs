@@ -44,7 +44,7 @@ macro_rules! test {
     }
 }
 test!(year2024
-    problem01
+    problem01, problem02
 );
 
 test!(year2025

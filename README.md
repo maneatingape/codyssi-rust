@@ -30,3 +30,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | Problem | Description | Solution |
 | --- | --- | --- |
 | 1 | [Handling the Budget](https://www.codyssi.com/view_problem_1) | [Source](src/year2024/problem01.rs) |
+| 2 | [Sensors and Circuits](https://www.codyssi.com/view_problem_2) | [Source](src/year2024/problem02.rs) |
