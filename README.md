@@ -23,3 +23,4 @@ Solutions for the [Codyssi](https://www.codyssi.com) challenge written in Rust.
 | 15 | [Artifacts at Atlantis](https://www.codyssi.com/view_problem_19) | [Source](src/year2025/problem15.rs) |
 | 16 | [Leviathan Mindscape](https://www.codyssi.com/view_problem_20) | [Source](src/year2025/problem16.rs) |
 | 17 | [Spiralling Stairs](https://www.codyssi.com/view_problem_21) | [Source](src/year2025/problem17.rs) |
+| 18 | [Cataclysmic Escape](https://www.codyssi.com/view_problem_22) | [Source](src/year2025/problem18.rs) |
