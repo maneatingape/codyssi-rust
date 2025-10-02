@@ -1,70 +1,64 @@
 use codyssi::util::ansi::*;
-use codyssi::*;
+use codyssi::util::parse::*;
 use std::env::args;
 use std::fs::read_to_string;
-use std::iter::empty;
-use std::path::Path;
 
 fn main() {
     // Parse command line options
-    let args: Vec<_> = args().collect();
-    let (year, problem) = if let Some(arg) = args.get(1) {
-        let mut iter = arg.split("::");
-        (iter.next(), iter.next())
-    } else {
-        (None, None)
-    };
+    let mut iter = args().flat_map(|arg| arg.iter_unsigned().collect::<Vec<u32>>());
+    let (year, problem) = (iter.next(), iter.next());
 
-    // Filter solutions
-    let solutions = empty()
-        .chain(year2024())
-        .chain(year2025())
-        .filter(|solution| year.is_none_or(|y| y == solution.year))
-        .filter(|solution| problem.is_none_or(|p| p == solution.problem));
+    let solutions = [year2024(), year2025()];
 
-    for Solution { year, problem, wrapper } in solutions {
-        let path = Path::new("input").join(year).join(problem).with_extension("txt");
+    // Filter solutions then pretty print output.
+    solutions
+        .into_iter()
+        .flatten()
+        .filter(|s| year.is_none_or(|y| y == s.year))
+        .filter(|s| problem.is_none_or(|p| p == s.problem))
+        .for_each(|Solution { year, problem, wrapper }| {
+            let path = format!("input/year{year}/problem{problem:02}.txt");
 
-        if let Ok(data) = read_to_string(&path) {
-            let (part1, part2, part3) = wrapper(data);
+            if let Ok(data) = read_to_string(&path) {
+                let (part1, part2, part3) = wrapper(&data);
 
-            println!("{YELLOW}{year} {problem}{RESET}");
-            println!("    Part 1: {BOLD}{WHITE}{part1}{RESET}");
-            println!("    Part 2: {BOLD}{WHITE}{part2}{RESET}");
-            println!("    Part 3: {BOLD}{WHITE}{part3}{RESET}");
-        } else {
-            eprintln!("{BOLD}{RED}{year} {problem}{RESET}");
-            eprintln!("    Missing input!");
-            eprintln!("    Place input file in {BOLD}{WHITE}{}{RESET}", path.display());
-        }
-    }
+                println!("{YELLOW}Year {year} Problem {problem}{RESET}");
+                println!("    Part 1: {BOLD}{WHITE}{part1}{RESET}");
+                println!("    Part 2: {BOLD}{WHITE}{part2}{RESET}");
+                println!("    Part 3: {BOLD}{WHITE}{part3}{RESET}");
+            } else {
+                eprintln!("{BOLD}{RED}Year {year} Problem {problem}{RESET}");
+                eprintln!("    Missing input!");
+                eprintln!("    Place input file in {BOLD}{WHITE}{path}{RESET}");
+            }
+        });
 }
 
 struct Solution {
-    year: &'static str,
-    problem: &'static str,
-    wrapper: fn(String) -> (String, String, String),
+    year: u32,
+    problem: u32,
+    wrapper: fn(&str) -> (String, String, String),
 }
 
 macro_rules! run {
     ($year:tt $($problem:tt),*) => {
         fn $year() -> Vec<Solution> {
-            vec![$({
-                let year = stringify!($year);
-                let problem = stringify!($problem);
-                let wrapper = |data: String| {
-                    use $year::$problem::*;
+            vec![$(
+                Solution {
+                    year: stringify!($year).unsigned(),
+                    problem: stringify!($problem).unsigned(),
+                    wrapper: |data: &str| {
+                        use codyssi::$year::$problem::*;
 
-                    let input = parse(&data);
-                    let part1 = part1(&input).to_string();
-                    let part2 = part2(&input).to_string();
-                    let part3 = part3(&input).to_string();
+                        let input = parse(data);
+                        let part1 = part1(&input).to_string();
+                        let part2 = part2(&input).to_string();
+                        let part3 = part3(&input).to_string();
 
-                    (part1, part2, part3)
-                };
-
-                Solution { year, problem, wrapper }
-            },)*]
+                        (part1, part2, part3)
+                    }
+                }
+            ,)*]
         }
     }
 }

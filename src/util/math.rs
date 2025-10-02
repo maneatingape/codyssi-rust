@@ -1,19 +1,3 @@
-//! Extended mathematical operations.
-//!
-//! * [Greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor)
-//!   of 2 numbers using the
-//!   [Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm).
-//!
-//! * [Least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
-//!
-//! * [Modular exponentation](https://en.wikipedia.org/wiki/Modular_exponentiation).
-//!   Calculates bᵉ mod m efficiently using
-//!   [exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
-//!
-//! * [Modular multiplicative inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
-//!   calculated using the [extended Euclidean algorithm](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm).
-//!
-//! * [Integer square root](https://en.wikipedia.org/wiki/Integer_square_root).
 use crate::util::integer::*;
 
 pub trait IntegerMathOps<T: Integer<T>> {
@@ -28,6 +12,7 @@ pub trait SignedMathOps<T: Signed<T>> {
 
 impl<T: Integer<T>> IntegerMathOps<T> for T {
     /// Greatest common divisor
+    #[inline]
     fn gcd(self, mut b: T) -> T {
         let mut a = self;
 
@@ -38,40 +23,43 @@ impl<T: Integer<T>> IntegerMathOps<T> for T {
         a
     }
 
-    // Least common multiple
+    /// Least common multiple
+    #[inline]
     fn lcm(self, b: T) -> T {
         self * (b / self.gcd(b))
     }
 
-    // Modular exponentation
+    /// Modular exponentiation
+    #[inline]
     fn mod_pow(self, mut e: T, m: T) -> T {
-        let mut b = self;
-        let mut c = T::ONE;
+        let mut base = self;
+        let mut result = T::ONE;
 
         while e > T::ZERO {
             if e & T::ONE == T::ONE {
-                c = (c * b) % m;
+                result = (result * base) % m;
             }
-            b = (b * b) % m;
-            e = e >> T::ONE;
+            base = (base * base) % m;
+            e = e >> 1;
         }
 
-        c
+        result
     }
 }
 
 impl<T: Signed<T>> SignedMathOps<T> for T {
-    // Modular multiplicative inverse
+    /// Modular multiplicative inverse
+    #[inline]
     fn mod_inv(self, m: T) -> Option<T> {
         let mut t = T::ZERO;
-        let mut newt = T::ONE;
+        let mut new_t = T::ONE;
         let mut r = m;
-        let mut newr = self;
+        let mut new_r = self;
 
-        while newr != T::ZERO {
-            let quotient = r / newr;
-            (t, newt) = (newt, t - quotient * newt);
-            (r, newr) = (newr, r - quotient * newr);
+        while new_r != T::ZERO {
+            let quotient = r / new_r;
+            (t, new_t) = (new_t, t - quotient * new_t);
+            (r, new_r) = (new_r, r - quotient * new_r);
         }
 
         if r > T::ONE {

@@ -3,7 +3,7 @@ pub fn parse(input: &str) -> Vec<&[u8]> {
 }
 
 pub fn part1(input: &[&[u8]]) -> usize {
-    input.iter().map(letters).sum()
+    input.iter().map(|line| letters(line)).sum()
 }
 
 pub fn part2(input: &[&[u8]]) -> usize {
@@ -14,7 +14,7 @@ pub fn part2(input: &[&[u8]]) -> usize {
             let end = line.len() - start;
             let removed = end - start;
 
-            letters(&&line[..start]) + letters(&&line[end..]) + digits(removed)
+            letters(&line[..start]) + letters(&line[end..]) + digits(removed)
         })
         .sum()
 }
@@ -26,7 +26,7 @@ pub fn part3(input: &[&[u8]]) -> usize {
             let mut compressed = original.to_vec();
             compressed.dedup();
 
-            let mut units = letters(&compressed.as_slice());
+            let mut units = letters(&compressed);
             let mut start = 0;
 
             for c in compressed {
@@ -40,7 +40,7 @@ pub fn part3(input: &[&[u8]]) -> usize {
         .sum()
 }
 
-fn letters(line: &&[u8]) -> usize {
+fn letters(line: &[u8]) -> usize {
     line.iter().map(|&b| (b - b'A' + 1) as usize).sum()
 }
 
